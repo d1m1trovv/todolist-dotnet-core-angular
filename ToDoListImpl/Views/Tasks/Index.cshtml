@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ToDoListImpl.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="text-align: center">
+<h1>Tasks</h1>
+</div>
+@*<p>
+    <a asp-action="Create" type="submit">Create New</a>
+</p>*@
+<form method="get"  class="navbar-right">
+    <button type="submit" asp-action="Create" class="btn btn-primary mb-2">Create new task</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>          
+            <td>
+                <form method="get" class="navbar-right">
+                    <button type="submit" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success mb-2 ">Edit</button>
+                    <button type="submit" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mb-2">Delete</button>
+                </form>
+                @*<button class="btn btn-danger" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
